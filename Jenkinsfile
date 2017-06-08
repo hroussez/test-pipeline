@@ -4,7 +4,7 @@ pipeline {
     stage('Build') {
       steps {
         parallel(
-          "Compile": {
+          "Package": {
             sh 'python --version'
             
           },
@@ -22,6 +22,7 @@ pipeline {
           },
           "JIRA": {
             sh 'echo \'jira\''
+            
           }
         )
       }
