@@ -3,7 +3,16 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'python --version'
+        parallel(
+          "Build": {
+            sh 'python --version'
+            
+          },
+          "Unit tests": {
+            sh 'echo \'unit test\''
+            
+          }
+        )
       }
     }
   }
