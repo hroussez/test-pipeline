@@ -51,6 +51,10 @@ pipeline {
           "BD RPM": {
             sh 'echo RPM'
             
+          },
+          "test": {
+            sh 'echo hello'
+            
           }
         )
       }
@@ -90,6 +94,7 @@ pipeline {
         timeout(time: 1, unit: 'HOURS') {
           input 'Deploy to Production?'
         }
+        
         sh 'echo \'promote to production\''
       }
     }
