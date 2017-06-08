@@ -4,7 +4,7 @@ pipeline {
     stage('Build') {
       steps {
         parallel(
-          "Package": {
+          "Compile": {
             sh 'python --version'
             
           },
