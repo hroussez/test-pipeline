@@ -27,5 +27,11 @@ pipeline {
         )
       }
     }
+    stage('Package') {
+      steps {
+        sh 'echo \'docker\''
+        sh 'echo \'rpm\''
+      }
+    }
   }
 }
