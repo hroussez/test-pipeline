@@ -56,6 +56,9 @@ pipeline {
       }
     }
     stage('Publish') {
+      when {
+        branch 'master'
+      }
       steps {
         parallel(
           "Docker": {
@@ -70,6 +73,9 @@ pipeline {
       }
     }
     stage('Stage') {
+      when {
+        branch 'master'
+      }
       steps {
         sh 'echo \'deploy stage\''
         sh 'echo \'stage load test\''
@@ -77,6 +83,9 @@ pipeline {
       }
     }
     stage('Promote') {
+      when {
+        branch 'master'
+      }
       steps {
         timeout(time: 1, unit: 'HOURS') {
           input 'Deploy to Production?'
@@ -85,6 +94,9 @@ pipeline {
       }
     }
     stage('Deploy to production') {
+      when {
+        branch 'master'
+      }
       steps {
         sh 'echo \'deploy to production\''
       }
