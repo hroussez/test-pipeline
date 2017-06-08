@@ -69,23 +69,18 @@ pipeline {
         )
       }
     }
-    stage('Stage deploy') {
+    stage('Stage') {
       steps {
         sh 'echo \'deploy stage\''
-      }
-    }
-    stage('Stage load test') {
-      steps {
         sh 'echo \'stage load test\''
-      }
-    }
-    stage('Stage regression test') {
-      steps {
         sh 'echo \'stage regression test\''
       }
     }
-    stage('Promote to production') {
+    stage('Promote') {
       steps {
+        timeout(time: 1, unit: 'HOURS') {
+          input 'Deploy to Production?'
+        }
         sh 'echo \'promote to production\''
       }
     }
