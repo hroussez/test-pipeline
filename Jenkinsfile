@@ -35,7 +35,21 @@ pipeline {
             
           },
           "RPM": {
-            sh 'RPM'
+            sh 'echo RPM'
+            
+          }
+        )
+      }
+    }
+    stage('Security Scan') {
+      steps {
+        parallel(
+          "BD Docker": {
+            sh 'echo \'docker\''
+            
+          },
+          "BD RPM": {
+            sh 'echo RPM'
             
           }
         )
@@ -43,7 +57,41 @@ pipeline {
     }
     stage('Publish') {
       steps {
-        sh 'echo \'publish\''
+        parallel(
+          "Docker": {
+            sh 'echo \'docker\''
+            
+          },
+          "RPM": {
+            sh 'echo RPM'
+            
+          }
+        )
+      }
+    }
+    stage('Stage deploy') {
+      steps {
+        sh 'echo \'deploy stage\''
+      }
+    }
+    stage('Stage load test') {
+      steps {
+        sh 'echo \'stage load test\''
+      }
+    }
+    stage('Stage regression test') {
+      steps {
+        sh 'echo \'stage regression test\''
+      }
+    }
+    stage('Promote to production') {
+      steps {
+        sh 'echo \'promote to production\''
+      }
+    }
+    stage('Deploy to production') {
+      steps {
+        sh 'echo \'deploy to production\''
       }
     }
   }
