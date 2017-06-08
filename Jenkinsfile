@@ -29,8 +29,17 @@ pipeline {
     }
     stage('Package') {
       steps {
-        sh 'echo \'docker\''
-        sh 'echo \'rpm\''
+        parallel(
+          "Package": {
+            sh 'echo \'docker\''
+            sh 'echo \'rpm\''
+            
+          },
+          "RPM": {
+            sh 'RPM'
+            
+          }
+        )
       }
     }
   }
