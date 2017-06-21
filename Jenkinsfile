@@ -41,6 +41,9 @@ pipeline {
           "RPM": {
             sh 'echo RPM'
             
+          },
+          "Test Marshall": {
+            sh "echo test"
           }
         )
       }
